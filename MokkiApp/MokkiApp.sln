@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MokkiApp", "MokkiApp\MokkiApp.csproj", "{B245326B-186B-49F3-B495-E9BB4E4E8898}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B245326B-186B-49F3-B495-E9BB4E4E8898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B245326B-186B-49F3-B495-E9BB4E4E8898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B245326B-186B-49F3-B495-E9BB4E4E8898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B245326B-186B-49F3-B495-E9BB4E4E8898}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C74FDCB2-41ED-47F3-913B-5D49FBEA3430}
+	EndGlobalSection
+EndGlobal
