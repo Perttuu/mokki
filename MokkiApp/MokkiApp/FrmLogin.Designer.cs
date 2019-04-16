@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbAdmin = new System.Windows.Forms.CheckBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,7 +55,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cbAdmin);
             this.panel1.Controls.Add(this.tbPassword);
             this.panel1.Controls.Add(this.tbUsername);
             this.panel1.Controls.Add(this.label2);
@@ -65,18 +63,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(248, 107);
             this.panel1.TabIndex = 1;
-            // 
-            // cbAdmin
-            // 
-            this.cbAdmin.AutoSize = true;
-            this.cbAdmin.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAdmin.ForeColor = System.Drawing.Color.White;
-            this.cbAdmin.Location = new System.Drawing.Point(177, 84);
-            this.cbAdmin.Name = "cbAdmin";
-            this.cbAdmin.Size = new System.Drawing.Size(68, 20);
-            this.cbAdmin.TabIndex = 4;
-            this.cbAdmin.Text = "Admin";
-            this.cbAdmin.UseVisualStyleBackColor = true;
             // 
             // tbPassword
             // 
@@ -167,9 +153,9 @@
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Peruuta";
             this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+
             // 
-            // FrmLoginTEST
+            // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,7 +169,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmLoginTEST";
+            this.Name = "FrmLogin";
             this.Text = "Form1";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmLoginTEST_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmLoginTEST_MouseMove);
@@ -206,7 +192,6 @@
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.CheckBox cbAdmin;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Button btnCancel;
