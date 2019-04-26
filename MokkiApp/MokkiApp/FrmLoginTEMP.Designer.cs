@@ -35,6 +35,9 @@
             this.lblSalt = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
             this.cbAdmin = new System.Windows.Forms.CheckBox();
+            this.lblUsers = new System.Windows.Forms.Label();
+            this.btnA = new System.Windows.Forms.Button();
+            this.btnZ = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -132,11 +135,44 @@
             this.cbAdmin.Text = "admin";
             this.cbAdmin.UseVisualStyleBackColor = true;
             // 
+            // lblUsers
+            // 
+            this.lblUsers.AutoSize = true;
+            this.lblUsers.Location = new System.Drawing.Point(12, 192);
+            this.lblUsers.Name = "lblUsers";
+            this.lblUsers.Size = new System.Drawing.Size(0, 13);
+            this.lblUsers.TabIndex = 11;
+            // 
+            // btnA
+            // 
+            this.btnA.Location = new System.Drawing.Point(475, 12);
+            this.btnA.Name = "btnA";
+            this.btnA.Size = new System.Drawing.Size(75, 23);
+            this.btnA.TabIndex = 12;
+            this.btnA.Tag = "a";
+            this.btnA.Text = "A";
+            this.btnA.UseVisualStyleBackColor = true;
+            this.btnA.Click += new System.EventHandler(this.btnOrder_Click);
+            // 
+            // btnZ
+            // 
+            this.btnZ.Location = new System.Drawing.Point(556, 12);
+            this.btnZ.Name = "btnZ";
+            this.btnZ.Size = new System.Drawing.Size(75, 23);
+            this.btnZ.TabIndex = 13;
+            this.btnZ.Tag = "z";
+            this.btnZ.Text = "Z";
+            this.btnZ.UseVisualStyleBackColor = true;
+            this.btnZ.Click += new System.EventHandler(this.btnOrder_Click);
+            // 
             // FrmLoginTEMP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnZ);
+            this.Controls.Add(this.btnA);
+            this.Controls.Add(this.lblUsers);
             this.Controls.Add(this.cbAdmin);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblSalt);
@@ -169,5 +205,8 @@
         private System.Windows.Forms.Label lblSalt;
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.CheckBox cbAdmin;
+        private System.Windows.Forms.Label lblUsers;
+        private System.Windows.Forms.Button btnA;
+        private System.Windows.Forms.Button btnZ;
     }
 }
