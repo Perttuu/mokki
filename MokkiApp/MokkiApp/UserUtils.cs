@@ -26,7 +26,7 @@ namespace MokkiApp {
                 }
             }
             catch {
-                AddErrorMessage("Käyttäjälistan tuonti epäonnistui.");
+                ErrorUtils.AddErrorMessage("Käyttäjälistan tuonti epäonnistui.");
             }
         }
 
@@ -42,7 +42,7 @@ namespace MokkiApp {
                 }
             }
             catch {
-                AddErrorMessage("Käyttäjälistan vienti epäonnistui.");
+                ErrorUtils.AddErrorMessage("Käyttäjälistan vienti epäonnistui.");
             }
             return ret;
         }
@@ -88,41 +88,7 @@ namespace MokkiApp {
                 ret = false;
             }
             if (!ret) {
-                AddErrorMessage("Salasanan pitää olla vähintään 8 merkkiä pitkä, sekä ei saa sisältää välilyöntejä.");
-            }
-            return ret;
-        }
-
-
-        /// <summary>
-        /// Lisää virheviestin
-        /// </summary>
-        /// <param name="message"></param>
-        public static void AddErrorMessage(string message) {
-            if (errorMessages == null) {
-                errorMessages = new List<string>();
-            }
-            errorMessages.Add(message);
-        }
-
-        /// <summary>
-        ///Tulostaa virheviestit rivinvaihdoilla.
-        /// </summary>
-        /// <param name="deleteAfter">Default = true, tyhjentää virheviestien listan</param>
-        /// <returns></returns>
-        public static string PrintErrorMessages(bool deleteAfter = true) {
-            string ret = "";
-            try {
-                foreach (string s in errorMessages) {
-                    ret = ret + s + "\n";
-                }
-            }
-            catch {
-                if (errorMessages != null)
-                ret = ret + "Virheviestien tulostus epäonnistui.";
-            }
-            if (deleteAfter) {
-                errorMessages = new List<string>();
+                ErrorUtils.AddErrorMessage("Salasanan pitää olla vähintään 8 merkkiä pitkä, sekä ei saa sisältää välilyöntejä.");
             }
             return ret;
         }
@@ -144,11 +110,11 @@ namespace MokkiApp {
                 }
             }
             catch {
-                AddErrorMessage("Käyttäjänimen etsiminen epäonnistui.");
+                ErrorUtils.AddErrorMessage("Käyttäjänimen etsiminen epäonnistui.");
                 ret = false;
             }
             if (!ret && uniquecheck) {
-                AddErrorMessage("Käyttäjänimi on jo käytössä.");
+                ErrorUtils.AddErrorMessage("Käyttäjänimi on jo käytössä.");
             }
             return ret;
         }
@@ -167,7 +133,7 @@ namespace MokkiApp {
                 ret = true;
             }
             else {
-                AddErrorMessage("Salasana on väärin.");
+                ErrorUtils.AddErrorMessage("Salasana on väärin.");
             }
             if (ret && login) {
                 LoggedUser = user;
@@ -185,10 +151,10 @@ namespace MokkiApp {
                 users.Remove(userToDelete);
             }
             else if (!LoggedUser.Admin) {
-                AddErrorMessage("Sinulla ei ole oikeuksia tähän.");
+                ErrorUtils.AddErrorMessage("Sinulla ei ole oikeuksia tähän.");
             }
             else if (userToDelete == LoggedUser) {
-                AddErrorMessage("Et voi poistaa omaa käyttäjää.");
+                ErrorUtils.AddErrorMessage("Et voi poistaa omaa käyttäjää.");
             }
         }
 
@@ -212,17 +178,17 @@ namespace MokkiApp {
                         userToEdit.Admin = adminNew;
                     }
                     else if (LoggedUser.Admin && loggedNow) {
-                        AddErrorMessage("Et voi muuttaa omaa admin-statustasi.");
+                        ErrorUtils.AddErrorMessage("Et voi muuttaa omaa admin-statustasi.");
                     }
                     else if (!LoggedUser.Admin) {
-                        AddErrorMessage("Sinulla ei ole oikeutta muuttaa admin-statuksia.");
+                        ErrorUtils.AddErrorMessage("Sinulla ei ole oikeutta muuttaa admin-statuksia.");
                     }
                     //Vain admin voi muuttaa käyttäjänimeä
                     if (LoggedUser.Admin) {
                         userToEdit.Username = usernameNew;
                     }
                     else if (!LoggedUser.Admin && usernameNew != userToEdit.Username) {
-                        AddErrorMessage("Sinulla ei ole oikeuksia muuttaa käyttäjänimeä.");
+                        ErrorUtils.AddErrorMessage("Sinulla ei ole oikeuksia muuttaa käyttäjänimeä.");
                     }
                     //Suola ja hash vaihtuu vain jos muokkaa omaa salasanaa ja salasana on muuttunut.
                     if (userToEdit == LoggedUser && !PasswordMatch(passwordNew, LoggedUser)) {
@@ -235,7 +201,7 @@ namespace MokkiApp {
                 }
             }
             catch {
-                AddErrorMessage("Käyttäjän muokkaus epäonnistui.");
+                ErrorUtils.AddErrorMessage("Käyttäjän muokkaus epäonnistui.");
             }
         }
 
