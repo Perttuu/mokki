@@ -7,29 +7,29 @@ using System.Threading.Tasks;
 namespace MokkiApp {
     class Office {
         public string Zip { get; set; } //pakollinen
-        public string City { get; set; } //pakollinen
+        public string PostalArea { get; set; } //pakollinen
         public string StreetAddress { get; set; } //pakollinen
-        public string Description { get; set; } //valinnainen
         public int Id { get; set; } //automaattinen
         public string Email { get; set; } //valinnainen
         public string Phone { get; set; } //valinnainen
+        public string Name { get; set; } //pakollinen
 
 
         /// <summary>
-        /// Zip, City, StreetAddress ei saa olla null eikä tyhjä("")
+        /// Name, Zip, City, StreetAddress ei saa olla null eikä tyhjä("")
         /// </summary>
         /// <param name="Zip"></param>
-        /// <param name="City"></param>
+        /// <param name="PostalArea"></param>
         /// <param name="StreetAddress"></param>
         /// <param name="Description"></param>
         /// <param name="Email"></param>
         /// <param name="Phone"></param>
-        public Office(string Zip, string City, string StreetAddress, string Description, string Email, string Phone) {
-            if (!(Zip == "" || City == "" || StreetAddress == "" || Zip == null || City == null || StreetAddress == null)) {
+        public Office(string Name, string Zip, string PostalArea, string StreetAddress, string Email, string Phone) {
+            if (!(Name == "" || Zip == "" || PostalArea == "" || StreetAddress == "" || Name == null || Zip == null || PostalArea == null || StreetAddress == null)) {
+                this.Name = Name;
                 this.Zip = Zip;
-                this.City = City;
+                this.PostalArea = PostalArea;
                 this.StreetAddress = StreetAddress;
-                this.Description = Description;
                 this.Email = Email;
                 this.Phone = Phone;
             }
