@@ -38,7 +38,7 @@ namespace MokkiApp {
         /// Luo automaattisen, uniikin ID:n
         /// </summary>
         /// <returns></returns>
-        public static int SetId() {
+        public static int GetId() {
             try {
                 int id = 1;
                 List<int> idlist = new List<int>();
@@ -66,10 +66,10 @@ namespace MokkiApp {
         /// <param name="Email"></param>
         /// <param name="Phone"></param>
         /// <param name="Id">!null, > 0</param>
-        public static void EditOffice(string Zip, string City, string StreetAddress, string Description, string Email, string Phone, int Id) {
+        public static void EditOffice(string Name, string Zip, string City, string StreetAddress, string Email, string Phone, int Id) {
             try {
-                if (!(Zip == "" || City == "" || StreetAddress == "" || Zip == null || City == null || StreetAddress == null || Id < 1)) {
-                    Office o = new Office(Zip, City, StreetAddress, Description, Email, Phone);
+                if (!(Name == "" || Name == null || Zip == "" || City == "" || StreetAddress == "" || Zip == null || City == null || StreetAddress == null || Id < 1)) {
+                    Office o = new Office(Name, Zip, City, StreetAddress, Email, Phone);
                     int i = 0;
                     foreach (Office off in officeList) {
                         if (off.Id == Id) {
@@ -94,10 +94,10 @@ namespace MokkiApp {
             try {
                 List<Office> ordered = new List<Office>();
                 if (!Decending) {
-                    ordered = officeList.OrderBy(o => o.City).ToList();
+                    ordered = officeList.OrderBy(o => o.PostalArea).ToList();
                 }
                 else {
-                    ordered = officeList.OrderBy(o => o.City).ToList();
+                    ordered = officeList.OrderBy(o => o.PostalArea).ToList();
                 }
                 if (ordered != null) {
                     officeList = new List<Office>();
@@ -162,12 +162,39 @@ namespace MokkiApp {
         }
 
         /// <summary>
+        /// Järjestelee listan nimen mukaan
+        /// </summary>
+        /// <param name="Decending">Onko käänteinen järjestys? default=false</param>
+        public static void OrderByName(bool Decending = false) {
+            try {
+                List<Office> ordered = new List<Office>();
+                if (!Decending) {
+                    ordered = officeList.OrderBy(o => o.Name).ToList();
+                }
+                else {
+                    ordered = officeList.OrderBy(o => o.Name).ToList();
+                }
+                if (ordered != null) {
+                    officeList = new List<Office>();
+                    foreach (Office o in ordered) {
+                        officeList.Add(o);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                ErrorUtils.AddErrorMessage(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Poistaa toimipisteen tunnistamalla ID:n
         /// </summary>
         /// <param name="Id"></param>
         public static void RemoveOffice(int Id) {
             try {
-                officeList.RemoveAt(Id);
+                OrderById();
+                int i = officeList.FindIndex(o => o.Id == Id);
+                officeList.RemoveAt(i);
             }
             catch(Exception ex) {
                 ErrorUtils.AddErrorMessage("Toimipisteen poisto ei onnistunut. -- " + ex.Message);
@@ -184,8 +211,7 @@ namespace MokkiApp {
                 Office ret = new Office("", "", "", "", "", "");
                 foreach (Office o in officeList) {
                     if (o.Id == Id) {
-                        ret.City = o.City;
-                        ret.Description = o.Description;
+                        ret.PostalArea = o.PostalArea;
                         ret.Email = o.Email;
                         ret.Id = o.Id;
                         ret.Phone = o.Phone;

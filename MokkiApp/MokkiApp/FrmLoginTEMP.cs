@@ -33,12 +33,10 @@ namespace MokkiApp {
                 }
             }
             catch(Exception ex) {
-                UserUtils.AddErrorMessage("Käyttäjän luominen epäonnistui.");
-                UserUtils.AddErrorMessage(ex.Message);
+                ErrorUtils.AddErrorMessage("Käyttäjän luominen epäonnistui.");
+                ErrorUtils.AddErrorMessage(ex.Message);
                 throw ex;
             }
-            //Printtaa aina kaikki virheviestit (saa muuttaa)
-            lblError.Text = UserUtils.PrintErrorMessages();
         }
 
         private void btnOrder_Click(object sender, EventArgs e) {
