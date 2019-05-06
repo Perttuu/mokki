@@ -123,6 +123,7 @@
             // btnOk
             // 
             this.btnOk.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.White;
             this.btnOk.Location = new System.Drawing.Point(120, 350);
@@ -145,6 +146,7 @@
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(199, 350);
@@ -153,7 +155,6 @@
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Peruuta";
             this.btnCancel.UseVisualStyleBackColor = false;
-
             // 
             // FrmLogin
             // 

@@ -10,28 +10,26 @@ using System.Windows.Forms;
 
 namespace MokkiApp
 {
-    public partial class FrmLogin : Form
+    public partial class FrmMain : Form
     {
 
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
 
-        public FrmLogin()
+        public FrmMain()
         {
             InitializeComponent();
         }
 
-        // Tämän avulla rajatonta formia voi liikutella (1/3)
-        private void FrmLoginTEST_MouseDown(object sender, MouseEventArgs e)
+        private void FrmMain_MouseDown(object sender, MouseEventArgs e)
         {
             dragging = true;
             dragCursorPoint = Cursor.Position;
             dragFormPoint = this.Location;
         }
 
-        // Tämän avulla rajatonta formia voi liikutella (2/3)
-        private void FrmLoginTEST_MouseMove(object sender, MouseEventArgs e)
+        private void FrmMain_MouseMove(object sender, MouseEventArgs e)
         {
             if (dragging)
             {
@@ -40,15 +38,11 @@ namespace MokkiApp
             }
         }
 
-        // Tämän avulla rajatonta formia voi liikutella (3/3)
-        private void FrmLoginTEST_MouseUp(object sender, MouseEventArgs e)
+        private void FrmMain_MouseUp(object sender, MouseEventArgs e)
         {
             dragging = false;
         }
 
-       
-
+        
     }
 }
-
-        
