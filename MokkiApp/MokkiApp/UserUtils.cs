@@ -12,8 +12,10 @@ namespace MokkiApp {
         public static User LoggedUser; //Kirjautunut käyttäjä, tarvitaan admintoimia varten, sekä mahdollista lokia varten
         private static List<User> users; //Tietokannasta tuotu lista käyttäjiä
 
+        
+
         /// <summary>
-        /// Tuo käyttäjälistan.
+        /// Tuo käyttäjälistan.s
         /// </summary>
         /// <param name="userlist"></param>
         public static void SetUserlist(List<User> userlist) {
@@ -24,7 +26,7 @@ namespace MokkiApp {
                 }
             }
             catch {
-                AddErrorMessage("Käyttäjälistan tuonti epäonnistui.");
+                ErrorUtils.AddErrorMessage("Käyttäjälistan tuonti epäonnistui.");
             }
         }
 
@@ -40,11 +42,11 @@ namespace MokkiApp {
                 }
             }
             catch {
-                AddErrorMessage("Käyttäjälistan vienti epäonnistui.");
+                ErrorUtils.AddErrorMessage("Käyttäjälistan vienti epäonnistui.");
             }
             return ret;
         }
-        
+
         /// <summary>
         /// Generoi suolan
         /// </summary>
@@ -86,40 +88,7 @@ namespace MokkiApp {
                 ret = false;
             }
             if (!ret) {
-                AddErrorMessage("Salasanan pitää olla vähintään 8 merkkiä pitkä, sekä ei saa sisältää välilyöntejä.");
-            }
-            return ret;
-        }
-
-
-        /// <summary>
-        /// Lisää virheviestin
-        /// </summary>
-        /// <param name="message"></param>
-        public static void AddErrorMessage(string message) {
-            if (errorMessages == null) {
-                errorMessages = new List<string>();
-            }
-            errorMessages.Add(message);
-        }
-
-        /// <summary>
-        ///Tulostaa virheviestit rivinvaihdoilla.
-        /// </summary>
-        /// <param name="deleteAfter">Default = true, tyhjentää virheviestien listan</param>
-        /// <returns></returns>
-        public static string PrintErrorMessages(bool deleteAfter = true) {
-            string ret = "";
-            try {
-                foreach (string s in errorMessages) {
-                    ret = ret + s + "\n";
-                }
-            }
-            catch {
-                ret = ret + "Virheviestien tulostus epäonnistui.";
-            }
-            if (deleteAfter) {
-                errorMessages = new List<string>();
+                ErrorUtils.AddErrorMessage("Salasanan pitää olla vähintään 8 merkkiä pitkä, sekä ei saa sisältää välilyöntejä.");
             }
             return ret;
         }
@@ -141,11 +110,11 @@ namespace MokkiApp {
                 }
             }
             catch {
-                AddErrorMessage("Käyttäjänimen etsiminen epäonnistui.");
+                ErrorUtils.AddErrorMessage("Käyttäjänimen etsiminen epäonnistui.");
                 ret = false;
             }
             if (!ret && uniquecheck) {
-                AddErrorMessage("Käyttäjänimi on jo käytössä.");
+                ErrorUtils.AddErrorMessage("Käyttäjänimi on jo käytössä.");
             }
             return ret;
         }
@@ -164,7 +133,7 @@ namespace MokkiApp {
                 ret = true;
             }
             else {
-                AddErrorMessage("Salasana on väärin.");
+                ErrorUtils.AddErrorMessage("Salasana on väärin.");
             }
             if (ret && login) {
                 LoggedUser = user;
@@ -181,11 +150,11 @@ namespace MokkiApp {
             if (LoggedUser.Admin && confirm && userToDelete != LoggedUser) {
                 users.Remove(userToDelete);
             }
-            else if (!LoggedUser.Admin){
-                AddErrorMessage("Sinulla ei ole oikeuksia tähän.");
+            else if (!LoggedUser.Admin) {
+                ErrorUtils.AddErrorMessage("Sinulla ei ole oikeuksia tähän.");
             }
             else if (userToDelete == LoggedUser) {
-                AddErrorMessage("Et voi poistaa omaa käyttäjää.");
+                ErrorUtils.AddErrorMessage("Et voi poistaa omaa käyttäjää.");
             }
         }
 
@@ -209,20 +178,20 @@ namespace MokkiApp {
                         userToEdit.Admin = adminNew;
                     }
                     else if (LoggedUser.Admin && loggedNow) {
-                        AddErrorMessage("Et voi muuttaa omaa admin-statustasi.");
+                        ErrorUtils.AddErrorMessage("Et voi muuttaa omaa admin-statustasi.");
                     }
                     else if (!LoggedUser.Admin) {
-                        AddErrorMessage("Sinulla ei ole oikeutta muuttaa admin-statuksia.");
+                        ErrorUtils.AddErrorMessage("Sinulla ei ole oikeutta muuttaa admin-statuksia.");
                     }
                     //Vain admin voi muuttaa käyttäjänimeä
                     if (LoggedUser.Admin) {
                         userToEdit.Username = usernameNew;
                     }
                     else if (!LoggedUser.Admin && usernameNew != userToEdit.Username) {
-                        AddErrorMessage("Sinulla ei ole oikeuksia muuttaa käyttäjänimeä.");
+                        ErrorUtils.AddErrorMessage("Sinulla ei ole oikeuksia muuttaa käyttäjänimeä.");
                     }
                     //Suola ja hash vaihtuu vain jos muokkaa omaa salasanaa ja salasana on muuttunut.
-                    if (userToEdit == LoggedUser && !PasswordMatch(passwordNew, LoggedUser))  {
+                    if (userToEdit == LoggedUser && !PasswordMatch(passwordNew, LoggedUser)) {
                         userToEdit.Salt = GetSalt();
                         userToEdit.Hash = GetHash(passwordNew + userToEdit.Salt);
                     }
@@ -232,7 +201,7 @@ namespace MokkiApp {
                 }
             }
             catch {
-                AddErrorMessage("Käyttäjän muokkaus epäonnistui.");
+                ErrorUtils.AddErrorMessage("Käyttäjän muokkaus epäonnistui.");
             }
         }
 
@@ -245,9 +214,48 @@ namespace MokkiApp {
         public static void CreateUser(string username, string password, bool admin) {
             if (LoggedUser.Admin) {
                 string salt = GetSalt();
-                string hash = GetHash(password+salt);
+                string hash = GetHash(password + salt);
                 User nuser = new User(username, hash, salt, admin);
+                users.Add(nuser);
             }
+        }
+
+        /// <summary>
+        /// Palauttaa string-listan käyttäjänimistä
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
+        public static List<string> ListUsers(bool admin) {
+            List<string> ret = new List<string>();
+            foreach (User u in users) {
+                ret.Add(u.Username);
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Järjestää käyttäjät aakkosjärjestykseen. Käänteinen jos parametrina false. Default=true
+        /// </summary>
+        /// <param name="decending"></param>
+        public static void OrderUserList(bool decending = true) {
+            List<User> orderedList = new List<User>();
+            if (decending) {
+                orderedList = users.OrderBy(u => u.Username).ToList();
+            }
+            else {
+                orderedList = users.OrderByDescending(u => u.Username).ToList();
+            }
+            users = new List<User>();
+            foreach (User u in orderedList) {
+                users.Add(u);
+            }
+        }
+
+        /// <summary>
+        /// Kirjaudu ulos -toiminto
+        /// </summary>
+        public static void LogOut() {
+            LoggedUser = null;
         }
     }
 }

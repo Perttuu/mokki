@@ -11,6 +11,8 @@ using System.Windows.Forms;
 namespace MokkiApp {
     public partial class FrmLoginTEMP : Form {
         public FrmLoginTEMP() {
+            List<User> uuu = new List<User>();
+            UserUtils.SetUserlist(uuu);
             InitializeComponent();
         }
 
@@ -30,11 +32,27 @@ namespace MokkiApp {
                     lblSalt.Text = UserUtils.LoggedUser.Salt;
                 }
             }
-            catch {
-                UserUtils.AddErrorMessage("Käyttäjän luominen epäonnistui.");
+            catch(Exception ex) {
+                ErrorUtils.AddErrorMessage("Käyttäjän luominen epäonnistui.");
+                ErrorUtils.AddErrorMessage(ex.Message);
+                throw ex;
             }
-            //Printtaa aina kaikki virheviestit (saa muuttaa)
-            lblError.Text = UserUtils.PrintErrorMessages();
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e) {
+            Button b = (Button)sender;
+            if ((string)b.Tag == "a") {
+                UserUtils.OrderUserList();
+            }
+            else if ((string)b.Tag == "z") {
+                UserUtils.OrderUserList(false);
+            }
+            List<string> users = new List<string>();
+            users = UserUtils.ListUsers(UserUtils.LoggedUser.Admin);
+            lblUsers.Text = "";
+            foreach (string s in users) {
+                lblUsers.Text = lblUsers.Text + s + "\n";
+            }
         }
     }
 }

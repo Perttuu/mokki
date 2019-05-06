@@ -46,24 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmMain.Designer.cs">
-      <DependentUpon>FrmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmLogin.Designer.cs">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
-    </Compile>
+
     <Compile Include="FrmLoginTEMP.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLoginTEMP.Designer.cs">
       <DependentUpon>FrmLoginTEMP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Office.cs" />
+    <Compile Include="OfficeUtils.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="ServiceUtils.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserUtils.cs" />
     <Compile Include="Program.cs" />
