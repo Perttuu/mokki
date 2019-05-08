@@ -39,8 +39,8 @@
             this.tbAsiakasZip = new System.Windows.Forms.TextBox();
             this.tbAsiakasCity = new System.Windows.Forms.TextBox();
             this.tbAsiakasStreetAdress = new System.Windows.Forms.TextBox();
-            this.tbAsiakasPassword = new System.Windows.Forms.TextBox();
-            this.tbAsiakasUsername = new System.Windows.Forms.TextBox();
+            this.tbAsiakasLastname = new System.Windows.Forms.TextBox();
+            this.tbAsiakasFirstname = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -140,8 +140,8 @@
             this.tabAsiakkaat.Controls.Add(this.tbAsiakasZip);
             this.tabAsiakkaat.Controls.Add(this.tbAsiakasCity);
             this.tabAsiakkaat.Controls.Add(this.tbAsiakasStreetAdress);
-            this.tabAsiakkaat.Controls.Add(this.tbAsiakasPassword);
-            this.tabAsiakkaat.Controls.Add(this.tbAsiakasUsername);
+            this.tabAsiakkaat.Controls.Add(this.tbAsiakasLastname);
+            this.tabAsiakkaat.Controls.Add(this.tbAsiakasFirstname);
             this.tabAsiakkaat.Controls.Add(this.label8);
             this.tabAsiakkaat.Controls.Add(this.label9);
             this.tabAsiakkaat.Controls.Add(this.label10);
@@ -201,6 +201,7 @@
             this.btnAsiakkaatAdd.Text = "Lisää";
             this.btnAsiakkaatAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAsiakkaatAdd.UseVisualStyleBackColor = false;
+            this.btnAsiakkaatAdd.Click += new System.EventHandler(this.btnAsiakkaatAdd_Click);
             // 
             // tbAsiakasPhone
             // 
@@ -242,21 +243,21 @@
             this.tbAsiakasStreetAdress.Size = new System.Drawing.Size(153, 22);
             this.tbAsiakasStreetAdress.TabIndex = 28;
             // 
-            // tbAsiakasPassword
+            // tbAsiakasLastname
             // 
-            this.tbAsiakasPassword.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.tbAsiakasPassword.Location = new System.Drawing.Point(397, 56);
-            this.tbAsiakasPassword.Name = "tbAsiakasPassword";
-            this.tbAsiakasPassword.Size = new System.Drawing.Size(153, 22);
-            this.tbAsiakasPassword.TabIndex = 27;
+            this.tbAsiakasLastname.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.tbAsiakasLastname.Location = new System.Drawing.Point(397, 56);
+            this.tbAsiakasLastname.Name = "tbAsiakasLastname";
+            this.tbAsiakasLastname.Size = new System.Drawing.Size(153, 22);
+            this.tbAsiakasLastname.TabIndex = 27;
             // 
-            // tbAsiakasUsername
+            // tbAsiakasFirstname
             // 
-            this.tbAsiakasUsername.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.tbAsiakasUsername.Location = new System.Drawing.Point(397, 18);
-            this.tbAsiakasUsername.Name = "tbAsiakasUsername";
-            this.tbAsiakasUsername.Size = new System.Drawing.Size(153, 22);
-            this.tbAsiakasUsername.TabIndex = 26;
+            this.tbAsiakasFirstname.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.tbAsiakasFirstname.Location = new System.Drawing.Point(397, 18);
+            this.tbAsiakasFirstname.Name = "tbAsiakasFirstname";
+            this.tbAsiakasFirstname.Size = new System.Drawing.Size(153, 22);
+            this.tbAsiakasFirstname.TabIndex = 26;
             // 
             // label8
             // 
@@ -396,6 +397,7 @@
             this.btnPalvelutAdd.Text = "Lisää";
             this.btnPalvelutAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPalvelutAdd.UseVisualStyleBackColor = false;
+            this.btnPalvelutAdd.Click += new System.EventHandler(this.btnPalvelutAdd_Click);
             // 
             // tbPalvelutDescription
             // 
@@ -574,6 +576,7 @@
             this.btnToimiAdd.Text = "Lisää";
             this.btnToimiAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnToimiAdd.UseVisualStyleBackColor = false;
+            this.btnToimiAdd.Click += new System.EventHandler(this.btnToimiAdd_Click);
             // 
             // tbToimiDescription
             // 
@@ -904,6 +907,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmMain";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseUp);
@@ -961,8 +965,8 @@
         private System.Windows.Forms.TextBox tbAsiakasZip;
         private System.Windows.Forms.TextBox tbAsiakasCity;
         private System.Windows.Forms.TextBox tbAsiakasStreetAdress;
-        private System.Windows.Forms.TextBox tbAsiakasPassword;
-        private System.Windows.Forms.TextBox tbAsiakasUsername;
+        private System.Windows.Forms.TextBox tbAsiakasLastname;
+        private System.Windows.Forms.TextBox tbAsiakasFirstname;
         private System.Windows.Forms.TextBox tbPalvelutDescription;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;

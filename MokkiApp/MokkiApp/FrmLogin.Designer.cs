@@ -72,6 +72,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(154, 20);
             this.tbPassword.TabIndex = 5;
+            this.tbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPassword_KeyPress);
             // 
             // tbUsername
             // 
@@ -81,6 +82,7 @@
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(154, 20);
             this.tbUsername.TabIndex = 4;
+            this.tbUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPassword_KeyPress);
             // 
             // label2
             // 
@@ -132,6 +134,7 @@
             this.btnOk.TabIndex = 4;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = false;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // lblError
             // 
@@ -155,6 +158,7 @@
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Peruuta";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // FrmLogin
             // 

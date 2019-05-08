@@ -7,8 +7,7 @@ using System.Security.Cryptography;
 
 namespace MokkiApp {
     static class UserUtils {
-
-        private static List<string> errorMessages; //Virheviestilista
+        
         public static User LoggedUser; //Kirjautunut käyttäjä, tarvitaan admintoimia varten, sekä mahdollista lokia varten
         private static List<User> users; //Tietokannasta tuotu lista käyttäjiä
 
@@ -127,18 +126,24 @@ namespace MokkiApp {
         /// <param name="login">Laita arvoksi true, jos kyseessä on sisäänkirjautuminen. Default=false</param>
         /// <returns></returns>
         public static bool PasswordMatch(string password, User user, bool login = false) {
-            bool ret = false;
-            string hash = GetHash(password + user.Salt);
-            if (hash == user.Hash) {
-                ret = true;
+            try {
+                bool ret = false;
+                string hash = GetHash(password + user.Salt);
+                if (hash == user.Hash) {
+                    ret = true;
+                }
+                else {
+                    ErrorUtils.AddErrorMessage("Salasana on väärin.");
+                }
+                if (ret && login) {
+                    LoggedUser = user;
+                }
+                return ret;
             }
-            else {
-                ErrorUtils.AddErrorMessage("Salasana on väärin.");
+            catch(Exception ex) {
+                ErrorUtils.AddErrorMessage(ex.Message);
+                return false;
             }
-            if (ret && login) {
-                LoggedUser = user;
-            }
-            return ret;
         }
 
         /// <summary>
@@ -256,6 +261,17 @@ namespace MokkiApp {
         /// </summary>
         public static void LogOut() {
             LoggedUser = null;
+        }
+
+        public static User FindUser(string Username) {
+            try {
+                User ret = users.Find(u => u.Username == Username);
+                return ret;
+            }
+            catch (Exception ex) {
+                ErrorUtils.AddErrorMessage("Kirjautuvaa käyttäjää etsiessä tapahtui virhe. -- " + ex.Message);
+                return null;
+            }
         }
     }
 }

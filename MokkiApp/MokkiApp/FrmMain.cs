@@ -19,7 +19,11 @@ namespace MokkiApp
 
         public FrmMain()
         {
+            FormUtils.ShowFrmLogin();
             InitializeComponent();
+            if (UserUtils.LoggedUser == null) {
+                this.Close();
+            }
         }
 
         private void FrmMain_MouseDown(object sender, MouseEventArgs e)
@@ -43,6 +47,32 @@ namespace MokkiApp
             dragging = false;
         }
 
-        
+        private void btnAsiakkaatAdd_Click(object sender, EventArgs e) {
+
+        }
+
+        private void btnPalvelutAdd_Click(object sender, EventArgs e) {
+            try {
+                Service s = new Service(tbPalvelutName.Text, double.Parse(tbPalvelutPrice.Text), tbPalvelutDescription.Text, double.Parse(tbPalvelutAlv.Text), int.Parse(tbPalvelutType.Text), 1);
+                ServiceUtils.AddService(s);
+            }
+            catch(Exception ex) {
+                ErrorUtils.AddErrorMessage(ex.Message);
+            }
+        }
+
+        private void btnToimiAdd_Click(object sender, EventArgs e) {
+            try {
+                Office o = new Office(tbToimiName.Text, tbToimiZip.Text, tbToimiCity.Text, tbToimiStreetAdress.Text, tbToimiEmail.Text, tbToimiPhone.Text);
+                OfficeUtils.AddOffice(o);
+            }
+            catch(Exception ex) {
+                ErrorUtils.AddErrorMessage(ex.Message);
+            }
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e) {
+            ErrorUtils.WriteToFile();
+        }
     }
 }

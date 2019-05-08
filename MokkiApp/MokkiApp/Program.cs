@@ -13,7 +13,12 @@ namespace MokkiApp {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            try {
+                Application.Run(new FrmMain());
+            }
+            catch {
+                ErrorUtils.AddErrorMessage("Kirjautuminen peruttu");
+            }
         }
     }
 }
