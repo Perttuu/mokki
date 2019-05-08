@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+// DEFAULT
+
 namespace MokkiApp {
     static class ErrorUtils {
         static string filePath = Directory.GetCurrentDirectory() + "\\ErrorReports.txt";
