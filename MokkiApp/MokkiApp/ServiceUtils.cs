@@ -245,5 +245,9 @@ namespace MokkiApp {
                 return null;
             }
         }
+
+        public static void AddService(Service s) {
+            serviceList.Add(s);
+        }
     }
 }

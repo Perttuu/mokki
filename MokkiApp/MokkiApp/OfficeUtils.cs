@@ -227,5 +227,9 @@ namespace MokkiApp {
                 return null;
             }
         }
+
+        public static void AddOffice(Office o) {
+            officeList.Add(o);
+        }
     }
 }
