@@ -17,8 +17,7 @@ namespace MokkiApp
         private Point dragCursorPoint;
         private Point dragFormPoint;
 
-        public FrmMain()
-        {
+        public FrmMain() {
             FormUtils.ShowFrmLogin();
             InitializeComponent();
             if (UserUtils.LoggedUser == null) {
@@ -46,7 +45,6 @@ namespace MokkiApp
         {
             dragging = false;
         }
-
         private void btnAsiakkaatAdd_Click(object sender, EventArgs e) {
 
         }
@@ -56,7 +54,7 @@ namespace MokkiApp
                 Service s = new Service(tbPalvelutName.Text, double.Parse(tbPalvelutPrice.Text), tbPalvelutDescription.Text, double.Parse(tbPalvelutAlv.Text), int.Parse(tbPalvelutType.Text), 1);
                 ServiceUtils.AddService(s);
             }
-            catch(Exception ex) {
+            catch (Exception ex) {
                 ErrorUtils.AddErrorMessage(ex.Message);
             }
         }
@@ -66,13 +64,17 @@ namespace MokkiApp
                 Office o = new Office(tbToimiName.Text, tbToimiZip.Text, tbToimiCity.Text, tbToimiStreetAdress.Text, tbToimiEmail.Text, tbToimiPhone.Text);
                 OfficeUtils.AddOffice(o);
             }
-            catch(Exception ex) {
+            catch (Exception ex) {
                 ErrorUtils.AddErrorMessage(ex.Message);
             }
         }
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e) {
             ErrorUtils.WriteToFile();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e) {
+            this.Close();
         }
     }
 }
