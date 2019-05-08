@@ -17,8 +17,9 @@ namespace MokkiApp {
                 Application.Run(new FrmMain());
             }
             catch {
-                ErrorUtils.AddErrorMessage("Kirjautuminen peruttu");
+                ErrorUtils.AddErrorMessage("Jokin meni pahasti pieleen, ohjelma ei toiminut.");
             }
+            ErrorUtils.WriteToFile(); //Kirjoittaa kaikki virheet tiedostoon
         }
     }
 }

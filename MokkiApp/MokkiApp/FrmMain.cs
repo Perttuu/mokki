@@ -10,19 +10,20 @@ using System.Windows.Forms;
 
 namespace MokkiApp
 {
-    public partial class FrmMain : Form
-    {
+    public partial class FrmMain : Form {
 
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+        string[] serviceOrders = new string[5] { "toimipiste", "id", "hinta", "tyyppi", "nimi" };
+        string[] officeOrders = new string[4] { "postitoimipaikka", "id", "nimi", "postinumero" };
 
         public FrmMain() {
             FormUtils.ShowFrmLogin();
             InitializeComponent();
-            if (UserUtils.LoggedUser == null) {
-                this.Close();
-            }
+            refreshCmbServiceOrder();
+            refreshCmbOffice();
+            refreshCmbOfficeOrder();
         }
 
         private void FrmMain_MouseDown(object sender, MouseEventArgs e)
@@ -68,13 +69,53 @@ namespace MokkiApp
                 ErrorUtils.AddErrorMessage(ex.Message);
             }
         }
-
-        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e) {
-            ErrorUtils.WriteToFile();
-        }
+        
 
         private void btnExit_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e) {
+            if (UserUtils.LoggedUser == null) {
+                this.Close();
+            }
+        }
+
+        private void cmbOffice_Click(object sender, EventArgs e) {
+            refreshCmbOffice();
+        }
+
+        private void refreshCmbOffice() {
+            try {
+                List<Office> offices = OfficeUtils.GetOffices();
+                List<string> names = new List<string>();
+                foreach (Office o in offices) {
+                    names.Add(o.Name);
+                }
+                cmbOffice.DataSource = names;
+            }
+            catch (Exception ex) {
+                ErrorUtils.AddErrorMessage(ex.Message);
+
+                //placeholder
+                List<string> names = new List<string>();
+                names.Add("Kuopio");
+                names.Add("Joensuu");
+                names.Add("Varkaus");
+                cmbOffice.DataSource = names;
+            }
+        }
+
+        private void refreshCmbServiceOrder() {
+            cmbServiceOrder.DataSource = serviceOrders;
+        }
+
+        private void refreshCmbOfficeOrder() {
+            cmbOfficeOrder.DataSource = officeOrders;
+        }
+
+        private void refreshUserManagement() {
+            
         }
     }
 }

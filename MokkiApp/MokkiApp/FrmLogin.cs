@@ -46,14 +46,15 @@ namespace MokkiApp {
         private void btnOk_Click(object sender, EventArgs e) {
             bool pass = false;
             User loggingUser = new User("", "", "", false);
-            if (tbUsername.Text == "admin") {
-                pass = true;
-                UserUtils.LoggedUser = new User("Admin", "", "", true);
-            }
-            else if (UserUtils.UserFound(tbUsername.Text, false)) {
+            if (UserUtils.UserFound(tbUsername.Text, false)) {
                 loggingUser = UserUtils.FindUser(tbUsername.Text);
                 pass = UserUtils.PasswordMatch(tbPassword.Text, loggingUser, true);
             }
+            else if (tbUsername.Text == "admin") {
+                pass = true;
+                UserUtils.LoggedUser = new User("Admin", "", "", true);
+            }
+            
             if (pass) {
                 UserUtils.LoggedUser = loggingUser;
                 FormUtils.CloseFrmLogin();

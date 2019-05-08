@@ -100,11 +100,11 @@ namespace MokkiApp {
         /// <returns></returns>
         public static bool UserFound(string username, bool uniquecheck) {
             List<string> usernames = new List<string>(); //placeholder, lista pitää lukea tietokannasta!!!
-            bool ret = true;
+            bool ret = false;
             try {
                 foreach (string s in usernames) {
                     if (username.ToLower() == s.ToLower()) {
-                        ret = false;
+                        ret = true;
                     }
                 }
             }
@@ -112,7 +112,7 @@ namespace MokkiApp {
                 ErrorUtils.AddErrorMessage("Käyttäjänimen etsiminen epäonnistui.");
                 ret = false;
             }
-            if (!ret && uniquecheck) {
+            if (ret && uniquecheck) {
                 ErrorUtils.AddErrorMessage("Käyttäjänimi on jo käytössä.");
             }
             return ret;
