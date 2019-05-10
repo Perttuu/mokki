@@ -13,7 +13,13 @@ namespace MokkiApp {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmLoginTEMP());
+            try {
+                Application.Run(new FrmMain());
+            }
+            catch {
+                ErrorUtils.AddErrorMessage("Jokin meni pahasti pieleen, ohjelma ei toiminut.");
+            }
+            ErrorUtils.WriteToFile(); //Kirjoittaa kaikki virheet tiedostoon
         }
     }
 }

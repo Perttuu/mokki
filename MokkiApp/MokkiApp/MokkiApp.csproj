@@ -48,23 +48,23 @@
   <ItemGroup>
     <Compile Include="CabinBooking.cs" />
     <Compile Include="FrmLoginTEMP.cs">
+    <Compile Include="ErrorUtils.cs" />
+    <Compile Include="FormUtils.cs" />
+    <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmLoginTEMP.Designer.cs">
-      <DependentUpon>FrmLoginTEMP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mokkivarausform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mokkivarausform.Designer.cs">
-      <DependentUpon>Mokkivarausform.cs</DependentUpon>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="UserUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmLoginTEMP.resx">
-      <DependentUpon>FrmLoginTEMP.cs</DependentUpon>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mokkivarausform.resx">
       <DependentUpon>Mokkivarausform.cs</DependentUpon>
@@ -78,6 +78,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="obj\Debug\MokkiApp.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\MokkiApp.csprojAssemblyReference.cache" />
+    <None Include="obj\Release\MokkiApp.csproj.CoreCompileInputs.cache" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -90,6 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
