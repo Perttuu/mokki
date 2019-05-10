@@ -46,11 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CabinBooking.cs" />
     <Compile Include="FrmLoginTEMP.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLoginTEMP.Designer.cs">
       <DependentUpon>FrmLoginTEMP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mokkivarausform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mokkivarausform.Designer.cs">
+      <DependentUpon>Mokkivarausform.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="UserUtils.cs" />
@@ -58,6 +65,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmLoginTEMP.resx">
       <DependentUpon>FrmLoginTEMP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mokkivarausform.resx">
+      <DependentUpon>Mokkivarausform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
